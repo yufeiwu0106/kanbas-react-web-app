@@ -4,7 +4,20 @@ export default function CourseStatus() {
         <h2>Course Status</h2>
         <button>Unpublish</button> <button>Publish</button>
         {/* Complete on your own */}
-        <button>View Course Notifications</button>
-      </div>
-  );}
-  
+
+        {/* Empty space row */}
+      <div style={{ marginTop: '20px' }}></div>
+
+      {/* Additional buttons, one per row */}
+      <button>Importing Existing Content</button>
+      <button>Import from Commons</button>
+      <button>Choose Home Page</button>
+      <button>View Course Stream</button>
+      <button>New Announcement</button>
+      <button>New Analytics</button>
+
+      {/* Existing button */}
+      <button>View Course Notifications</button>
+    </div>
+  );
+}
