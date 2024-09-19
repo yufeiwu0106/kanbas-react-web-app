@@ -1,11 +1,17 @@
 import { Route, Routes, Navigate } from "react-router";
+import { Link } from "react-router-dom"
+
+import Lab3 from "../Labs/Lab3";
+import Lab2 from "../Labs/Lab2";
+import Lab1 from "../Labs/Lab2";
+
 
 export default function Landing() {
   return (
     <div>
       {/* Full name and section number */}
       <div style={{ marginBottom: "20px" }}>
-        <h1>Yufei Wu - CS5610 - Section 20593</h1>
+        <h1>Yufei Wu - CS5610 - Section 1</h1>
       </div>
 
       {/* Heading for GitHub link */}
@@ -23,36 +29,16 @@ export default function Landing() {
       <h1>Labs</h1>
 
       <ul>
-        <li>
-          <a href="/#/Labs" target="_blank" rel="noopener noreferrer">
-            Labs
-          </a>
-        </li>
-        <li>
-          <a href="/#/Labs/Lab1" target="_blank" rel="noopener noreferrer">
-            Lab1
-          </a>
-        </li>
-        <li>
-          <a href="/#/Labs/Lab2" target="_blank" rel="noopener noreferrer">
-            Lab2
-          </a>
-        </li>
-        <li>
-          <a href="/#/Labs/Lab3" target="_blank" rel="noopener noreferrer">
-            Lab3
-          </a>
-        </li>
+        <li><Link to="/Labs/Lab1">Labs</Link></li>
+        <li><Link to="/Labs/Lab1">Lab 1</Link></li>
+        <li><Link to="/Labs/Lab2">Lab 2</Link></li>
+        <li><Link to="/Labs/Lab3">Lab 3</Link></li>
       </ul>
 
       <h1>Kanbas</h1>
 
       <ul>
-        <li>
-          <a href="/#/Kanbas" target="_blank" rel="noopener noreferrer">
-            Kanbas
-          </a>
-        </li>
+        <li><Link to="/Kanbas/Account/Signin">Kanbas</Link></li>
       </ul>
     </div>
   );

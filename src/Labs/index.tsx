@@ -10,7 +10,7 @@ export default function Labs() {
     <div>
       {/* Full name and section number */}
       <div style={{ marginBottom: '20px' }}>
-        <h1>Yufei Wu - Section 20593</h1>
+        <h1>Yufei Wu - Section 1</h1>
       </div>
 
       {/* Heading for GitHub link */}

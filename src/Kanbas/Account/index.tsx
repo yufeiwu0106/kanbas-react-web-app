@@ -14,13 +14,7 @@ export default function Account() {
             <AccountNavigation />
           </td>
           <td valign="top">
-            {/* <h2>Account</h2> */}
             <Routes>
-              {/* <Route path="/" element={<Navigate to="Signin" />} />
-            <Route path="Signin" element={<Signin />} />
-            <Route path="Profile" element={<Profile />} />
-            <Route path="Signup" element={<Signup />} /> */}
-
               <Route
                 path="/"
                 element={<Navigate to="/Kanbas/Account/Signin" />}
