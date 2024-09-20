@@ -16,7 +16,7 @@ export default function Labs() {
       {/* Heading for GitHub link */}
       <h1>Repositories Link</h1>
       <div style={{ marginTop: '20px' }}>
-        <a href="https://github.com/yufeiwu0106/kanbas-react-web-app/tree/a1" target="_blank" rel="noopener noreferrer">
+        <a id="wd-github" href="https://github.com/yufeiwu0106/kanbas-react-web-app/tree/a2" target="_blank" rel="noopener noreferrer">
           All Source Code Repositories on GitHub
         </a>
       </div>
