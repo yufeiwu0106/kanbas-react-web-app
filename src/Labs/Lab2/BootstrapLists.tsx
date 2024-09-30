@@ -11,7 +11,7 @@ export default function BootstrapLists() {
       </ul>
       <br />
       <br />
-      
+
       <div id="wd-css-hyperlink-list">
         <h3>Favorite books</h3>
         <div className="list-group">
@@ -46,6 +46,7 @@ export default function BootstrapLists() {
             Ender's Game
           </a>
         </div>
+        <br />
       </div>
     </div>
   );
