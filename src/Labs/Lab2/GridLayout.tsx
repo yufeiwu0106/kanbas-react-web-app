@@ -28,6 +28,7 @@ export default function GridLayout() {
           <h3>Side bar</h3>
           <p>This is the left sidebar</p>
         </div>
+        
         <div className="wd-grid-col-main-content wd-bg-color-blue wd-fg-color-white">
           <h3>Main content</h3>
           <p>
@@ -40,6 +41,9 @@ export default function GridLayout() {
           <p>This is the right sidebar</p>
         </div>
       </div>
+    
     </div>
+  
+    
   );
 }

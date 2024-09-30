@@ -25,6 +25,8 @@ export default function Padding() {
       >
         Padded all around
       </div>
+      <br/>
+      <br/>
     </div>
   );
 }

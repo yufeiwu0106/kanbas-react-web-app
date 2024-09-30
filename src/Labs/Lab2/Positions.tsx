@@ -64,6 +64,8 @@ export default function Positions() {
           Fixed position
         </div>
       </div>
+      <br/>
+      <br/>
     </div>
   );
 }

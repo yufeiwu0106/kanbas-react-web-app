@@ -8,6 +8,8 @@ export default function Borders() {
       <p className="wd-border-thin wd-border-blue wd-border-dashed">
         Dashed thin blue border
       </p>
+      <br/>
+      <br/>
     </div>
   );
 }

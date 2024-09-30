@@ -29,6 +29,8 @@ export default function Corners() {
       >
         Different rounded corners
       </p>
+      <br/>
+      <br/>
     </div>
   );
 }

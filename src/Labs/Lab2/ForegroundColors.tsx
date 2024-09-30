@@ -7,6 +7,8 @@ export default function ForegroundColors() {
         The text in this paragraph is red but
         <span className="wd-fg-color-green"> this text is green</span>
       </p>
+      <br/>
+      <br/>
     </div>
   );
 }

@@ -12,6 +12,8 @@ export default function Dimensions() {
         </div>
         <div className="wd-dimension-square wd-bg-color-red">Square</div>
       </div>
+      <br/>
+      <br/>
     </div>
   );
 }
