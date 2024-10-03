@@ -11,7 +11,7 @@ export default function Dashboard() {
         <div className="row row-cols-1 row-cols-md-5 g-4">
 
           {/* Course 1 */}
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+          <div className="wd-dashboard-course col" style={{ width: "270px", marginBottom: "35px"}}>
             <div className="card rounded-3 overflow-hidden">
               <Link className="wd-dashboard-course-link text-decoration-none text-dark"
                     to="/Kanbas/Courses/1234/Home">
@@ -30,10 +30,10 @@ export default function Dashboard() {
           </div>
 
           {/* Course 2 */}
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+          <div className="wd-dashboard-course col" style={{ width: "270px", marginBottom: "35px" }}>
             <div className="card rounded-3 overflow-hidden">
               <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-                    to="/Kanbas/Courses/2345/Home">
+                    to="/Kanbas/Courses/1234/Home">
                 <img src="/images/nodejs.jpg" width="100%" height={160} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
@@ -49,14 +49,14 @@ export default function Dashboard() {
           </div>
 
           {/* Course 3 */}
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+          <div className="wd-dashboard-course col" style={{ width: "270px", marginBottom: "35px" }}>
             <div className="card rounded-3 overflow-hidden">
               <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-                    to="/Kanbas/Courses/3456/Home">
+                    to="/Kanbas/Courses/1234/Home">
                 <img src="/images/python.jpg" width="100%" height={160} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
-                    CS3456 Python Programming
+                    CS3456 Python
                   </h5>
                   <p className="wd-dashboard-course-title card-text">
                     Data science with Python
@@ -68,14 +68,14 @@ export default function Dashboard() {
           </div>
 
           {/* Course 4 */}
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+          <div className="wd-dashboard-course col" style={{ width: "270px", marginBottom: "35px"}}>
             <div className="card rounded-3 overflow-hidden">
               <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-                    to="/Kanbas/Courses/4567/Home">
+                    to="/Kanbas/Courses/1234/Home">
                 <img src="/images/docker.jpg" width="100%" height={160} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
-                    CS4567 Docker Essentials
+                    CS4567 Docker
                   </h5>
                   <p className="wd-dashboard-course-title card-text">
                     Learn containerization
@@ -87,10 +87,10 @@ export default function Dashboard() {
           </div>
 
           {/* Course 5 */}
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+          <div className="wd-dashboard-course col" style={{ width: "270px", marginBottom: "35px" }}>
             <div className="card rounded-3 overflow-hidden">
               <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-                    to="/Kanbas/Courses/5678/Home">
+                    to="/Kanbas/Courses/1234/Home">
                 <img src="/images/kubernetes.jpg" width="100%" height={160} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
@@ -106,14 +106,14 @@ export default function Dashboard() {
           </div>
 
           {/* Course 6 */}
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+          <div className="wd-dashboard-course col" style={{ width: "270px", marginBottom: "35px" }}>
             <div className="card rounded-3 overflow-hidden">
               <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-                    to="/Kanbas/Courses/6789/Home">
+                    to="/Kanbas/Courses/1234/Home">
                 <img src="/images/git.jpg" width="100%" height={160} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
-                    CS6789 Git Version Control
+                    CS6789 Git Control
                   </h5>
                   <p className="wd-dashboard-course-title card-text">
                     Master Git and GitHub
@@ -125,14 +125,14 @@ export default function Dashboard() {
           </div>
 
           {/* Course 7 */}
-          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+          <div className="wd-dashboard-course col" style={{ width: "270px", marginBottom: "35px" }}>
             <div className="card rounded-3 overflow-hidden">
               <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-                    to="/Kanbas/Courses/7890/Home">
+                    to="/Kanbas/Courses/1234/Home">
                 <img src="/images/ai.jpg" width="100%" height={160} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
-                    CS7890 Artificial Intelligence
+                    CS7890 AI
                   </h5>
                   <p className="wd-dashboard-course-title card-text">
                     AI and machine learning
