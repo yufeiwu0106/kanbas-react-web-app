@@ -18,7 +18,7 @@ export default function Landing() {
       <h1>Repositories Link</h1>
       <div style={{ marginTop: "20px" }}>
         <a
-          href="https://github.com/yufeiwu0106/kanbas-react-web-app/tree/a1"
+          href="https://github.com/yufeiwu0106/kanbas-react-web-app/tree/a2"
           target="_blank"
           rel="noopener noreferrer"
         >

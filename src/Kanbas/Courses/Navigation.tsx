@@ -71,7 +71,7 @@ export default function CoursesNavigation() {
         className={({ isActive }) =>
           `list-group-item border border-0 ${isActive ? "active" : ""}`
         }
-        to="/Kanbas/People"
+        to="/Kanbas/Courses/1234/People"
       >
         People
       </NavLink>
