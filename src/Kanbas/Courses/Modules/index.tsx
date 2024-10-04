@@ -5,7 +5,7 @@ import { BsGripVertical } from "react-icons/bs";
 
 export default function Modules() {
   return (
-    <div>
+    <div className="container">
       <ModulesControls />
       <br />
       <br />
