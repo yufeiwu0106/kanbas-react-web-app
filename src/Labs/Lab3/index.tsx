@@ -7,6 +7,11 @@ import ConditionalOutputIfElse from "./ConditionalOutputIfElse";
 import ConditionalOutputInline from "./ConditionalOutputInline";
 import LegacyFunctions from "./LegacyFunctions";
 import ArrowFunctions from "./ArrowFunctions";
+import ImpliedReturn from "./ImpliedReturn";
+import TemplateLiterals from "./TemplateLiterals";
+import SimpleArrays from "./SimpleArray";
+import ArrayIndexAndLength from "./ArrayIndexAndLength";
+import AddingAndRemovingToFromArrays from "./AddingAndRemovingToFromArrays";
 
 export default function Lab3() {
     return (
@@ -21,6 +26,12 @@ export default function Lab3() {
         <ConditionalOutputInline />
         <LegacyFunctions />
         <ArrowFunctions />
+        <ImpliedReturn />
+        <TemplateLiterals />
+        <SimpleArrays />
+        <ArrayIndexAndLength />
+        <AddingAndRemovingToFromArrays />
+
 
 
       </div>
