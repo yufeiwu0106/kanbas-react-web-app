@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import * as db from "./Database";
+
 
 export default function Dashboard() {
   return (
