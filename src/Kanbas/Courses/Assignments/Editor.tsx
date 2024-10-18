@@ -3,11 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'; 
 import { useParams} from "react-router-dom";
 import {assignments} from "../../Database";
+import { useNavigate } from 'react-router-dom';
 
 export default function AssignmentEditor() {
-    const { aid } = useParams();
+    const { cid, aid } = useParams();
     const assignment = assignments.find((a) => a._id === aid);
 
+    const navigate = useNavigate();
 
     return (
         <div id="wd-assignments-editor" className="container mt-4">
@@ -154,8 +156,8 @@ export default function AssignmentEditor() {
             </div>
             
             <div className="d-flex justify-content-end mt-4">
-                <button className="btn btn-secondary me-2">Cancel</button>
-                <button className="btn btn-danger">Save</button>
+                <button className="btn btn-secondary me-2" onClick={() => navigate(`/Kanbas/Courses/${cid}/Assignments`)}>Cancel</button>
+                <button className="btn btn-danger" onClick={() => navigate(`/Kanbas/Courses/${cid}/Assignments`)}>Save</button>
             </div>
         </div>
     );
