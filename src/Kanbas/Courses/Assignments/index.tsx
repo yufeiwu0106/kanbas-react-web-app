@@ -12,8 +12,6 @@ import { assignments } from "../../Database";
 export default function Assignments() {
   const { cid } = useParams();
 
-  console.log(cid);
-
   return (
     <div>
       <div
