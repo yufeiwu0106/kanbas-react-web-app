@@ -81,37 +81,157 @@
     "_id": "M201",
     "name": "Fundamentals of Aerodynamics",
     "description": "Basic aerodynamic concepts and fluid dynamics principles.",
-    "course": "RS102"
+    "course": "RS102",
+    "lessons": [
+      {
+        "_id": "L201",
+        "name": "Principles of Lift and Drag",
+        "description": "Basic principles of lift and drag in aerodynamic systems.",
+        "module": "M201"
+      },
+      {
+        "_id": "L202",
+        "name": "Flow Characteristics",
+        "description": "Understanding the behavior of airflows around objects.",
+        "module": "M201"
+      },
+      {
+        "_id": "L203",
+        "name": "Boundary Layers and Flow Separation",
+        "description": "Study of boundary layers and flow separation in aerodynamics.",
+        "module": "M201"
+      }
+    ]
   },
   {
     "_id": "M202",
     "name": "Subsonic and Supersonic Flow",
     "description": "Understanding subsonic and supersonic aerodynamic behaviors.",
-    "course": "RS102"
+    "course": "RS102",
+    "lessons": [
+      {
+        "_id": "L204",
+        "name": "Subsonic Flow Principles",
+        "description": "Understanding the behavior of airflow at subsonic speeds.",
+        "module": "M202"
+      },
+      {
+        "_id": "L205",
+        "name": "Supersonic Flow Dynamics",
+        "description": "Key principles of airflow at supersonic speeds and shock waves.",
+        "module": "M202"
+      },
+      {
+        "_id": "L206",
+        "name": "Compressibility Effects",
+        "description": "Effects of compressibility in subsonic and supersonic flows.",
+        "module": "M202"
+      }
+    ]
   },
   {
     "_id": "M203",
     "name": "Aerodynamic Heating",
     "description": "Study of aerodynamic heating and thermal protection systems.",
-    "course": "RS102"
+    "course": "RS102",
+    "lessons": [
+      {
+        "_id": "L207",
+        "name": "Heat Transfer Mechanisms",
+        "description": "Understanding the mechanisms of heat transfer in high-speed flows.",
+        "module": "M203"
+      },
+      {
+        "_id": "L208",
+        "name": "Thermal Protection Systems",
+        "description": "Overview of systems used to protect vehicles from aerodynamic heating.",
+        "module": "M203"
+      },
+      {
+        "_id": "L209",
+        "name": "Hypersonic Flow Heating",
+        "description": "The impact of aerodynamic heating in hypersonic flows.",
+        "module": "M203"
+      }
+    ]
   },
   {
     "_id": "M301",
     "name": "Spacecraft Structural Design",
     "description": "Fundamentals of designing spacecraft structures and materials selection.",
-    "course": "RS103"
+    "course": "RS103",
+    "lessons": [
+      {
+        "_id": "L301",
+        "name": "Materials for Spacecraft",
+        "description": "Introduction to materials used in spacecraft design.",
+        "module": "M301"
+      },
+      {
+        "_id": "L302",
+        "name": "Structural Analysis",
+        "description": "Techniques for analyzing spacecraft structures under stress.",
+        "module": "M301"
+      },
+      {
+        "_id": "L303",
+        "name": "Load-Bearing Structures",
+        "description": "Designing load-bearing structures for spacecraft.",
+        "module": "M301"
+      }
+    ]
   },
   {
     "_id": "M302",
     "name": "Orbital Mechanics",
     "description": "Understanding orbital dynamics and mission planning.",
-    "course": "RS103"
+    "course": "RS103",
+    "lessons": [
+      {
+        "_id": "L304",
+        "name": "Kepler's Laws and Orbital Elements",
+        "description": "Fundamentals of Kepler's laws and defining orbital elements.",
+        "module": "M302"
+      },
+      {
+        "_id": "L305",
+        "name": "Orbital Transfer Maneuvers",
+        "description": "Understanding Hohmann transfers and other orbital maneuvers.",
+        "module": "M302"
+      },
+      {
+        "_id": "L306",
+        "name": "Mission Planning and Delta-v",
+        "description": "Basics of mission planning and calculating delta-v for orbital changes.",
+        "module": "M302"
+      }
+    ]
   },
   {
     "_id": "M303",
     "name": "Spacecraft Systems Engineering",
     "description": "Overview of spacecraft systems and subsystems engineering.",
-    "course": "RS103"
+    "course": "RS103",
+    "lessons": [
+      {
+        "_id": "L307",
+        "name": "Power Systems",
+        "description": "Introduction to spacecraft power generation and storage systems.",
+        "module": "M303"
+      },
+      {
+        "_id": "L308",
+        "name": "Thermal Control Systems",
+        "description": "Overview of thermal control methods used in spacecraft.",
+        "module": "M303"
+      },
+      {
+        "_id": "L309",
+        "name": "Communication and Avionics Systems",
+        "description": "Study of communication systems and avionics in spacecraft engineering.",
+        "module": "M303"
+      }
+    ]
   },
   {
     "_id": "M401",
