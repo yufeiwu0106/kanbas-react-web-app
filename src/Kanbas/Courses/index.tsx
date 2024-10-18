@@ -3,10 +3,10 @@ import Modules from "./Modules";
 import Home from "./Home";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
-import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import { FaAlignJustify } from "react-icons/fa";
 import PeopleTable from "./People/Table";
 import { courses } from "../Database";
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
 
 export default function Courses() {
   const { cid } = useParams();
@@ -17,7 +17,8 @@ export default function Courses() {
     <div id="wd-courses">
       <h2 className="text-danger">
         <FaAlignJustify className="me-4 fs-4 mb-1" />
-        {course && course.name}
+        {course && course.name} &gt; {pathname.split("/")[4]}
+
 
       </h2>
       <hr />
