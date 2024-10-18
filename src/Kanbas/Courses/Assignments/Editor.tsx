@@ -1,15 +1,20 @@
 import { IoIosArrowDown } from "react-icons/io";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'; 
-import { IoIosClose } from "react-icons/io";
+import { useParams} from "react-router-dom";
+import {assignments} from "../../Database";
 
 export default function AssignmentEditor() {
+    const { aid } = useParams();
+    const assignment = assignments.find((a) => a._id === aid);
+
+
     return (
         <div id="wd-assignments-editor" className="container mt-4">
             <div className="mb-3 row">
                 <label htmlFor="wd-name" className="col-sm-2 col-form-label">Assignment Name</label>
                 <div className="col-sm-10">
-                    <input id="wd-name" value="A1" className="form-control" />
+                    <input id="wd-name" value={`${aid}`} className="form-control" />
                 </div>
             </div>
             <div className="mb-3 row">
@@ -33,7 +38,7 @@ export default function AssignmentEditor() {
             <div className="mb-3 row">
                 <label htmlFor="wd-points" className="col-sm-2 col-form-label">Points</label>
                 <div className="col-sm-10">
-                    <input id="wd-points" value={100} className="form-control" />
+                    <input id="wd-points" value={assignment?.point} className="form-control" />
                 </div>
             </div>
             
@@ -132,16 +137,16 @@ export default function AssignmentEditor() {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="wd-due-date" className="form-label"><b>Due</b></label>
-                            <input type="datetime-local" id="wd-due-date" value="2024-05-13T23:59" className="form-control" />
+                            <input type="datetime-local" id="wd-due-date" value={assignment?.dueDate} className="form-control" />
                         </div>
                         <div className="row mb-3">
                             <div className="col-sm-6">
                                 <label htmlFor="wd-available-from" className="form-label"><b>Available From</b></label>
-                                <input type="datetime-local" id="wd-available-from" value="2024-05-06T00:00" className="form-control" />
+                                <input type="datetime-local" id="wd-available-from" value={assignment?.availableDate} className="form-control" />
                             </div>
                             <div className="col-sm-6">
                                 <label htmlFor="wd-available-until" className="form-label"><b>Until</b></label>
-                                <input type="datetime-local" id="wd-available-until" value="2024-05-20T00:00" className="form-control" />
+                                <input type="datetime-local" id="wd-available-until" value={assignment?.dueDate} className="form-control" />
                             </div>
                         </div>
                     </div>

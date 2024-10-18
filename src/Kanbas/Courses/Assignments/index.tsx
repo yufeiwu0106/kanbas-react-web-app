@@ -6,8 +6,14 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import "./index.css";
+import { useParams } from "react-router";
+import { assignments } from "../../Database";
 
 export default function Assignments() {
+  const { cid } = useParams();
+
+  console.log(cid);
+
   return (
     <div>
       <div
@@ -54,110 +60,44 @@ export default function Assignments() {
             </button>
           </div>
           <ul className="list-group list-group-flush">
-            <li
-              className="wd-assignment-list-item list-group-item p-3 ps-1"
-              style={{ borderLeft: "5px solid green" }}
-            >
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex align-items-center">
-                  <BsGripVertical className="me-2 fs-3" />
-                  <GiNotebook className="me-2 fs-3" />
-                  <div>
-                    <a
-                      className="wd-assignment-link"
-                      href="#/Kanbas/Courses/1234/Assignments/123"
-                      style={{
-                        color: "black",
-                        textDecoration: "none",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      A1
-                    </a>
-                    <br />
-                    <span className="text-red">Multiple Modules</span>
-                    <span style={{ color: "black" }}>
-                      <b> | Not available until</b> May 6 at 12:00am |
-                    </span>
-                    <br />
-                    <span className="text-black">
-                      <b>Due</b> May 13 at 11:59pm | 100 pts <br />
-                    </span>
+            {assignments
+              .filter((assignment) => assignment.course === cid)
+              .map((assignment) => (
+              <li
+                className="wd-assignment-list-item list-group-item p-3 ps-1"
+                style={{ borderLeft: "5px solid green" }}
+              >
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="d-flex align-items-center">
+                    <BsGripVertical className="me-2 fs-3" />
+                    <GiNotebook className="me-2 fs-3" />
+                    <div>
+                      <a
+                        className="wd-assignment-link"
+                        href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
+                        style={{
+                          color: "black",
+                          textDecoration: "none",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {assignment.title}
+                      </a>
+                      <br />
+                      <span className="text-red">Multiple Modules</span>
+                      <span style={{ color: "black" }}>
+                        <b> | Not available until</b> {assignment.availableDate}
+                      </span>
+                      <br />
+                      <span className="text-black">
+                        <b>Due</b> {assignment.dueDate} | {assignment.point} pts <br />
+                      </span>
+                    </div>
                   </div>
+                  <GreenCheckPlus />
                 </div>
-                <GreenCheckPlus />
-              </div>
-            </li>
-
-            <li
-              className="wd-assignment-list-item list-group-item p-3 ps-1"
-              style={{ borderLeft: "5px solid green" }}
-            >
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex align-items-center">
-                  <BsGripVertical className="me-2 fs-3" />
-                  <GiNotebook className="me-2 fs-3" />
-                  <div>
-                    <a
-                      className="wd-assignment-link"
-                      href="#/Kanbas/Courses/1234/Assignments/123"
-                      style={{
-                        color: "black",
-                        textDecoration: "none",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      A2
-                    </a>
-                    <br />
-                    <span className="text-red">Multiple Modules</span>
-                    <span style={{ color: "black" }}>
-                      <b> | Not available until</b> May 13 at 12:00am |
-                    </span>
-                    <br />
-                    <span className="text-black">
-                      <b>Due</b> May 20 at 11:59pm | 100 pts <br />
-                    </span>
-                  </div>
-                </div>
-                <GreenCheckPlus />
-              </div>
-            </li>
-
-            <li
-              className="wd-assignment-list-item list-group-item p-3 ps-1"
-              style={{ borderLeft: "5px solid green" }}
-            >
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex align-items-center">
-                  <BsGripVertical className="me-2 fs-3" />
-                  <GiNotebook className="me-2 fs-3" />
-                  <div>
-                    <a
-                      className="wd-assignment-link"
-                      href="#/Kanbas/Courses/1234/Assignments/123"
-                      style={{
-                        color: "black",
-                        textDecoration: "none",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      A3
-                    </a>
-                    <br />
-                    <span className="text-red">Multiple Modules</span>
-                    <span style={{ color: "black" }}>
-                      <b> | Not available until</b> May 6 at 12:00am |
-                    </span>
-                    <br />
-                    <span className="text-black">
-                      <b>Due</b> May 27 at 11:59pm | 100 pts <br />
-                    </span>
-                  </div>
-                </div>
-                <GreenCheckPlus />
-              </div>
-            </li>
+              </li>
+            ))}
           </ul>
         </li>
       </ul>
