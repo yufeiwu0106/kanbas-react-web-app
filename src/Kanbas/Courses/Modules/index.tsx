@@ -17,6 +17,9 @@ export default function Modules() {
                                      name: moduleName, course: cid, lessons: [] } ]);
     setModuleName("");
   };
+  const deleteModule = (moduleId: string) => {
+    setModules(modules.filter((m) => m._id !== moduleId));
+  };
 
 
 
@@ -35,7 +38,7 @@ export default function Modules() {
               <div className="wd-title p-3 ps-2 bg-secondary">
                 <BsGripVertical className="me-2 fs-3" />
                 {module.name}
-                <ModuleControlButtons />
+                <ModuleControlButtons moduleId={module._id} deleteModule={deleteModule}/>
               </div>
               {module.lessons && (
                 <ul className="wd-lessons list-group rounded-0">
