@@ -57,9 +57,8 @@ export default function Dashboard(
                   className="wd-dashboard-course-link text-decoration-none text-dark"
                   to={`/Kanbas/Courses/${course._id}/Home`}
                 >
-                  {/* <img src="/images/reactjs.jpg" width="100%" height={160} /> */}
                   <img
-                    src={`/images/${course._id}.jpg`}
+                    src={course.image ? course.image : `/images/${course._id}.jpg`}
                     width="100%"
                     height={160}
                   />
