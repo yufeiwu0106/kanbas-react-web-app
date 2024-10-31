@@ -17,6 +17,9 @@ export default function Dashboard() {
     const newCourse = { ...course, _id: new Date().getTime().toString() };
     setCourses([...courses, { ...course, ...newCourse }]);
   };
+  const deleteCourse = (courseId: string) => {
+    setCourses(courses.filter((course) => course._id !== courseId));
+  };
 
   return (
     <div id="wd-dashboard">
@@ -34,11 +37,17 @@ export default function Dashboard() {
         </button>
       </h5>
       <br />
-      <input value={course.name} className="form-control mb-2" 
-        onChange={(e) => setCourse({ ...course, name: e.target.value }) } />
+      <input
+        value={course.name}
+        className="form-control mb-2"
+        onChange={(e) => setCourse({ ...course, name: e.target.value })}
+      />
 
-      <textarea value={course.description} className="form-control" 
-        onChange={(e) => setCourse({ ...course, description: e.target.value }) } />
+      <textarea
+        value={course.description}
+        className="form-control"
+        onChange={(e) => setCourse({ ...course, description: e.target.value })}
+      />
 
       <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
       <hr />
@@ -72,6 +81,16 @@ export default function Dashboard() {
                       {course.description}
                     </p>
                     <button className="btn btn-primary"> Go </button>
+                    <button
+                      onClick={(event) => {
+                        event.preventDefault();
+                        deleteCourse(course._id);
+                      }}
+                      className="btn btn-danger float-end"
+                      id="wd-delete-course-click"
+                    >
+                      Delete
+                    </button>
                   </div>
                 </Link>
               </div>
