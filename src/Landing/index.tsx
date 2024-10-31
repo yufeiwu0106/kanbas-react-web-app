@@ -33,6 +33,7 @@ export default function Landing() {
         <li><Link to="/Labs/Lab1">Lab 1</Link></li>
         <li><Link to="/Labs/Lab2">Lab 2</Link></li>
         <li><Link to="/Labs/Lab3">Lab 3</Link></li>
+        <li><Link to="/Labs/Lab4">Lab 4</Link></li>
       </ul>
 
       <h1>Kanbas</h1>
