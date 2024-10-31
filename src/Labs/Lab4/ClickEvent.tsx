@@ -1,9 +1,12 @@
 const hello = () => {
   alert("Hello World!");
 };
+
 const lifeIs = (good: string) => {
   alert(`Life is ${good}`);
 };
+
+
 export default function ClickEvent() {
   return (
     <div id="wd-click-event">
