@@ -29,6 +29,7 @@ export default function Signin() {
         defaultValue={credentials.password}
         onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
         className="form-control mb-2"
+        type = "password"
       />
 
       <button onClick={signin} id="wd-signin-btn" className="btn btn-primary w-100" > Sign in </button>
