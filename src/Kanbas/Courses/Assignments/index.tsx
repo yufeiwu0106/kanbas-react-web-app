@@ -9,12 +9,20 @@ import "./index.css";
 import { useParams } from "react-router";
 import { assignments } from "../../Database";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import AssignmentEditor from "./AssignmentEditor";
+
 
 export default function Assignments() {
   const { cid } = useParams();
+  const navigate = useNavigate();
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser.role == "FACULTY";
+
+  const addAssignment = () => {
+    navigate(`/Kanbas/Courses/${cid}/Assignments/New%20Assignment`)
+  }
 
   return (
     <div>
@@ -34,20 +42,7 @@ export default function Assignments() {
           />
         </div>
 
-        {/* Only faculty can add group and assignment */}
-        {isFaculty && (
-          <div className="d-flex">
-            <button
-              id="wd-add-assignment-group"
-              className="btn btn-lg btn-outline-secondary me-1"
-            >
-              + Group
-            </button>
-            <button id="wd-add-assignment" className="btn btn-lg btn-danger">
-              + Assignment
-            </button>
-          </div>
-        )}
+        <AssignmentEditor cid={cid}/>
 
       </div>
 

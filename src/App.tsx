@@ -3,7 +3,7 @@ import Labs from "./Labs";
 import Kanbas from "./Kanbas";
 import Landing from "./Landing/index";
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
-import store from "./Kanbas/store";
+import store from "./Kanbas/store/index";
 import { Provider } from "react-redux";
 
 export function App() {
