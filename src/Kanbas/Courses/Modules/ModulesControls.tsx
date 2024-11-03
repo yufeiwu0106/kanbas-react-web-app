@@ -2,12 +2,20 @@ import { FaPlus } from "react-icons/fa6";
 import GreenCheckmark from "./GreenCheckmark";
 import GrayBanIcon from "./GrayBanIcon";
 import ModuleEditor from "./ModulesEditor";
+import { useSelector } from "react-redux";
 
 
-
+// Only Faculty can control modules
 export default function ModulesControls({ moduleName, setModuleName, addModule }:
   { moduleName: string; setModuleName: (title: string) => void; addModule: () => void; }) {
-  return (
+  
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
+  
+    if (currentUser.role != "FACULTY") {
+      return null;
+    }
+
+    return (
     <div id="wd-modules-controls" className="text-nowrap">
       <button
         id="wd-add-module-btn"

@@ -8,9 +8,13 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import "./index.css";
 import { useParams } from "react-router";
 import { assignments } from "../../Database";
+import { useSelector } from "react-redux";
 
 export default function Assignments() {
   const { cid } = useParams();
+
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const isFaculty = currentUser.role == "FACULTY";
 
   return (
     <div>
@@ -29,17 +33,22 @@ export default function Assignments() {
             placeholder="Search..."
           />
         </div>
-        <div className="d-flex">
-          <button
-            id="wd-add-assignment-group"
-            className="btn btn-lg btn-outline-secondary me-1"
-          >
-            + Group
-          </button>
-          <button id="wd-add-assignment" className="btn btn-lg btn-danger">
-            + Assignment
-          </button>
-        </div>
+
+        {/* Only faculty can add group and assignment */}
+        {isFaculty && (
+          <div className="d-flex">
+            <button
+              id="wd-add-assignment-group"
+              className="btn btn-lg btn-outline-secondary me-1"
+            >
+              + Group
+            </button>
+            <button id="wd-add-assignment" className="btn btn-lg btn-danger">
+              + Assignment
+            </button>
+          </div>
+        )}
+
       </div>
 
       {/* Assignment */}
@@ -61,41 +70,43 @@ export default function Assignments() {
             {assignments
               .filter((assignment) => assignment.course === cid)
               .map((assignment) => (
-              <li
-                className="wd-assignment-list-item list-group-item p-3 ps-1"
-                style={{ borderLeft: "5px solid green" }}
-              >
-                <div className="d-flex justify-content-between align-items-center">
-                  <div className="d-flex align-items-center">
-                    <BsGripVertical className="me-2 fs-3" />
-                    <GiNotebook className="me-2 fs-3" />
-                    <div>
-                      <a
-                        className="wd-assignment-link"
-                        href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
-                        style={{
-                          color: "black",
-                          textDecoration: "none",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {assignment.title}
-                      </a>
-                      <br />
-                      <span className="text-red">Multiple Modules</span>
-                      <span style={{ color: "black" }}>
-                        <b> | Not available until</b> {assignment.availableDate}
-                      </span>
-                      <br />
-                      <span className="text-black">
-                        <b>Due</b> {assignment.dueDate} | {assignment.point} pts <br />
-                      </span>
+                <li
+                  className="wd-assignment-list-item list-group-item p-3 ps-1"
+                  style={{ borderLeft: "5px solid green" }}
+                >
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="d-flex align-items-center">
+                      <BsGripVertical className="me-2 fs-3" />
+                      <GiNotebook className="me-2 fs-3" />
+                      <div>
+                        <a
+                          className="wd-assignment-link"
+                          href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
+                          style={{
+                            color: "black",
+                            textDecoration: "none",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {assignment.title}
+                        </a>
+                        <br />
+                        <span className="text-red">Multiple Modules</span>
+                        <span style={{ color: "black" }}>
+                          <b> | Not available until</b>{" "}
+                          {assignment.availableDate}
+                        </span>
+                        <br />
+                        <span className="text-black">
+                          <b>Due</b> {assignment.dueDate} | {assignment.point}{" "}
+                          pts <br />
+                        </span>
+                      </div>
                     </div>
+                    <GreenCheckPlus />
                   </div>
-                  <GreenCheckPlus />
-                </div>
-              </li>
-            ))}
+                </li>
+              ))}
           </ul>
         </li>
       </ul>
