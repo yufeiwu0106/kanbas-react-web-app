@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { setCurrentUser } from "./reducer";
 import { useDispatch } from "react-redux";
 import * as db from "../Database";
+import { useSelector } from "react-redux";
 
 
 export default function Signin() {
@@ -16,6 +17,12 @@ export default function Signin() {
     dispatch(setCurrentUser(user));
     navigate("/Kanbas/Dashboard");
   };
+
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+
+  if (currentUser) {
+    return null;
+  }
 
   return (
     <div id="wd-signin-screen">
@@ -34,19 +41,6 @@ export default function Signin() {
 
       <button onClick={signin} id="wd-signin-btn" className="btn btn-primary w-100" > Sign in </button>
       <Link id="wd-signup-link" to="/Kanbas/Account/Signup"> Sign up </Link>
-
-{/* 
-      <Link
-        id="wd-signin-btn"
-        to="/Kanbas/Dashboard"
-        className="btn btn-primary w-100"
-      >
-        {" "}
-        Sign in{" "}
-      </Link>{" "}
-      <Link id="wd-signup-link" to="/Kanbas/Account/Signup">
-        Sign up
-      </Link> */}
     </div>
   );
 }
