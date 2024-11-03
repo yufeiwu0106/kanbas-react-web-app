@@ -22,7 +22,7 @@ export default function Dashboard({
   const { enrollments } = db;
   const isFaculty = currentUser.role == "FACULTY";
 
-  const enrolledCourses = courses.filter((course) =>
+  const enrolledCourses = isFaculty ? courses : courses.filter((course) =>
     enrollments.some(
       (enrollment) =>
         enrollment.user === currentUser._id && enrollment.course === course._id
