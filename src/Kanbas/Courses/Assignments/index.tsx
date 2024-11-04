@@ -91,7 +91,7 @@ export default function Assignments() {
                         </span>
                       </div>
                     </div>
-                    <GreenCheckPlus />
+                    <GreenCheckPlus assignmentId={assignment._id} />
                   </div>
                 </li>
               ))}

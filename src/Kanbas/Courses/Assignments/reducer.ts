@@ -15,8 +15,7 @@ const assignmentsSlice = createSlice({
                 _id: 'A' + new Date().getTime().toString(),
                 title: assignment.title,
                 description: assignment.description,
-                // course: assignment.course,
-                course: "RS101",
+                course: assignment.course,
                 availableDate: assignment.availableDate,
                 dueDate: assignment.dueDate,
                 untilDate: assignment.untilDate,
@@ -24,17 +23,21 @@ const assignmentsSlice = createSlice({
             }
 
             state.assignments = [...state.assignments, newAssignment] as any;
+        },
 
-            console.log(state.assignments)
+        deleteAssignment: (state, { payload: assignmentId }) => {
+            console.log("reducer delete assignmentId: ", assignmentId)
+
+            state.assignments = state.assignments.filter(
+                (a: any) => a._id != assignmentId
+            )
         },
-        deleteAssignment: (state, { payload: assignment }) => {
-            console.log("deleteAssignment reducer called...")
-        },
+
         updateAssignment: (state, { payload: assignment }) => {
             console.log("updateAssignment called, payload is: ", assignment, ", state is ", state)
         },
-     }
+    }
 });
 
-export const {addAssignment, deleteAssignment, updateAssignment} =  assignmentsSlice.actions;
+export const { addAssignment, deleteAssignment, updateAssignment } = assignmentsSlice.actions;
 export default assignmentsSlice.reducer;
