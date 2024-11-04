@@ -7,22 +7,14 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import "./index.css";
 import { useParams } from "react-router";
-import { assignments } from "../../Database";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import AssignmentEditor from "./AssignmentEditor";
+import AssignmentController from "./AssignmentController";
 
 
 export default function Assignments() {
   const { cid } = useParams();
-  const navigate = useNavigate();
 
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const isFaculty = currentUser.role == "FACULTY";
-
-  const addAssignment = () => {
-    navigate(`/Kanbas/Courses/${cid}/Assignments/New%20Assignment`)
-  }
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
 
   return (
     <div>
@@ -42,7 +34,7 @@ export default function Assignments() {
           />
         </div>
 
-        <AssignmentEditor cid={cid}/>
+        <AssignmentController cid={cid}/>
 
       </div>
 
@@ -62,9 +54,10 @@ export default function Assignments() {
             </button>
           </div>
           <ul className="list-group list-group-flush">
-            {assignments
-              .filter((assignment) => assignment.course === cid)
-              .map((assignment) => (
+            {
+            assignments
+              .filter((assignment: any) => assignment.course === cid)
+              .map((assignment: any) => (
                 <li
                   className="wd-assignment-list-item list-group-item p-3 ps-1"
                   style={{ borderLeft: "5px solid green" }}
