@@ -3,6 +3,7 @@ import GreenCheck from "./GreenCheck";
 import { FaTrash } from "react-icons/fa";
 import { deleteAssignment } from "./reducer";
 import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 
 export default function GreenCheckPlus({
   assignmentId,
@@ -11,18 +12,66 @@ export default function GreenCheckPlus({
 }) {
   const dispatch = useDispatch();
 
+  console.log("!!!", assignmentId)
+
+  const handleConfirmDelete = () => {
+    dispatch(deleteAssignment(assignmentId)); // Dispatch the delete action
+  };
+
   return (
-    <div className="float-end">
+    <div id="wd-modules-controls" className="text-nowrap">
       <GreenCheck />
 
-      <FaTrash
-        className="text-danger me-2 mb-1"
-        onClick={() => {
-          dispatch(deleteAssignment(assignmentId));
-        }}
-      />
-
       <IoEllipsisVertical className="fs-4" />
+
+      <button
+        id="wd-delete-assignment-btn"
+        className="btn btn-lg btn-white me-1"
+        data-bs-toggle="modal"
+        data-bs-target={`#wd-delete-assignment-dialog-${assignmentId}`}
+      >
+        <FaTrash className="text-danger me-2 mb-1" />
+      </button>
+
+      <div
+        id={`wd-delete-assignment-dialog-${assignmentId}`}
+        className="modal fade"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">
+                Remove the assignment {assignmentId}?{" "}
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel{" "}
+              </button>
+              <button
+                onClick={handleConfirmDelete}
+                type="button"
+                data-bs-dismiss="modal"
+                className="btn btn-danger"
+              >
+                Delete{" "}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
