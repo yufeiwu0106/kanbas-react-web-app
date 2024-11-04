@@ -9,20 +9,34 @@ const assignmentsSlice = createSlice({
     name: "assignments",
     initialState,
     reducers: {
-        addAssignment: (state, { payload: assignment }) => {
+        addOrUpdateAssignment: (state, { payload: assignment }) => {
             console.log("addAssignment called, payload is: ", assignment)
-            const newAssignment: any = {
-                _id: 'A' + new Date().getTime().toString(),
-                title: assignment.title,
-                description: assignment.description,
-                course: assignment.course,
-                availableDate: assignment.availableDate,
-                dueDate: assignment.dueDate,
-                untilDate: assignment.untilDate,
-                point: assignment.point
-            }
 
-            state.assignments = [...state.assignments, newAssignment] as any;
+            const existingAssignmentIndex = state.assignments.findIndex(
+                (a: any) => a._id === assignment._id
+            );
+
+            if ( existingAssignmentIndex !== -1) {
+                state.assignments[existingAssignmentIndex] = {
+                    ...state.assignments[existingAssignmentIndex],
+                    ...assignment,
+                };
+            } else {
+                // add a new assignment if no existing assignement is found
+
+                const newAssignment: any = {
+                    _id: 'A' + new Date().getTime().toString(),
+                    title: assignment.title,
+                    description: assignment.description,
+                    course: assignment.course,
+                    availableDate: assignment.availableDate,
+                    dueDate: assignment.dueDate,
+                    untilDate: assignment.untilDate,
+                    point: assignment.point
+                }
+
+                state.assignments = [...state.assignments, newAssignment] as any;
+            }
         },
 
         deleteAssignment: (state, { payload: assignmentId }) => {
@@ -33,11 +47,9 @@ const assignmentsSlice = createSlice({
             )
         },
 
-        updateAssignment: (state, { payload: assignment }) => {
-            console.log("updateAssignment called, payload is: ", assignment, ", state is ", state)
-        },
+
     }
 });
 
-export const { addAssignment, deleteAssignment, updateAssignment } = assignmentsSlice.actions;
+export const { addOrUpdateAssignment, deleteAssignment } = assignmentsSlice.actions;
 export default assignmentsSlice.reducer;

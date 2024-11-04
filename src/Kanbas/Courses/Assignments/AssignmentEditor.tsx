@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { updateAssignment, addAssignment } from "./reducer";
+import { addOrUpdateAssignment } from "./reducer";
 import { useState } from "react";
 
 export default function AssignmentEditor() {
@@ -21,7 +21,7 @@ export default function AssignmentEditor() {
   const isFaculty = currentUser.role == "FACULTY";
 
   // asignment title state
-  const [assignmentName, setAssignmentName] = useState(aid);
+  const [assignmentName, setAssignmentName] = useState(assignment?.title || 'Untitled');
 
   // description
   const DEFAULT_DESCRIPTION = `The assignment is available online.
@@ -63,12 +63,10 @@ The Kanbas application should include a link to navigate back to the landing pag
             id="wd-name"
             className="form-control"
             onChange={(e) => {
-              dispatch(
-                updateAssignment({ ...assignment, name: e.target.value })
-              );
               setAssignmentName(e.target.value);
             }}
             defaultValue={assignment?.title || "Untitled"}
+            readOnly={!isFaculty}
           />
         </div>
       </div>
@@ -278,7 +276,8 @@ The Kanbas application should include a link to navigate back to the landing pag
             className="btn btn-danger"
             onClick={() => {
               dispatch(
-                addAssignment({
+                addOrUpdateAssignment({
+                  _id: aid,
                   title: assignmentName,
                   course: cid,
                   description: description,
@@ -288,6 +287,7 @@ The Kanbas application should include a link to navigate back to the landing pag
                   point: point,
                 })
               );
+              setAssignmentName(assignmentName)
               navigate(`/Kanbas/Courses/${cid}/Assignments`);
             }}
           >
