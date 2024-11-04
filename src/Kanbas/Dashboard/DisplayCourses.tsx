@@ -1,83 +1,27 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import * as db from "./Database";
 
-export default function Dashboard({
+export default function EnrolledCourses({
   courses,
-  course,
-  setCourse,
-  addNewCourse,
+  showAllCourses,
+  isFaculty,
   deleteCourse,
-  updateCourse,
+  setCourse
 }: {
   courses: any[];
-  course: any;
-  setCourse: (course: any) => void;
-  addNewCourse: () => void;
-  deleteCourse: (course: any) => void;
-  updateCourse: () => void;
+  showAllCourses: boolean;
+  isFaculty: boolean;
+  deleteCourse: (courseId: string) => void;
+  setCourse: (courseId: string) => void;
 }) {
-  const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = db;
-  const isFaculty = currentUser.role == "FACULTY";
-
-  const enrolledCourses = isFaculty ? courses : courses.filter((course) =>
-    enrollments.some(
-      (enrollment) =>
-        enrollment.user === currentUser._id && enrollment.course === course._id
-    )
-  );
-
   return (
-    <div id="wd-dashboard">
-      <h1 id="wd-dashboard-title">Dashboard</h1>
-      <hr />
-      {/* only Faculty can add/update course */}
-      {isFaculty && (
-        <>
-          <h5>
-            New Course
-            <button
-              className="btn btn-primary float-end"
-              id="wd-add-new-course-click"
-              onClick={addNewCourse}
-            >
-              Add
-            </button>
-            <button
-              className="btn btn-warning float-end me-2"
-              onClick={updateCourse}
-              id="wd-update-course-click"
-            >
-              Update
-            </button>
-          </h5>
-          <br />
-
-          <input
-            value={course.name}
-            className="form-control mb-2"
-            onChange={(e) => setCourse({ ...course, name: e.target.value })}
-          />
-
-          <textarea
-            value={course.description}
-            className="form-control"
-            onChange={(e) =>
-              setCourse({ ...course, description: e.target.value })
-            }
-          />
-        </>
-      )}
-
+    <div>
       <h2 id="wd-dashboard-published">
-        Published Courses ({enrolledCourses.length})
+        {showAllCourses ? "All Published Courses": "Enrolled Courses" } ({courses.length})
       </h2>
       <hr />
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
-          {enrolledCourses.map((course) => (
+          {courses.map((course) => (
             <div
               className="wd-dashboard-course col"
               style={{ width: "270px", marginBottom: "35px" }}
