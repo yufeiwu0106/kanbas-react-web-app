@@ -95,7 +95,8 @@ export default function Dashboard({
       )}
 
       <DisplayCourses
-        courses={showAllCourses ? courses : enrolledCourses}
+        enrolledCourses={enrolledCourses}
+        allCourses={courses}
         showAllCourses={showAllCourses}
         isFaculty={isFaculty}
         deleteCourse={deleteCourse}

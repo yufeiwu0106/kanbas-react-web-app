@@ -10,8 +10,6 @@ const assignmentsSlice = createSlice({
     initialState,
     reducers: {
         addOrUpdateAssignment: (state, { payload: assignment }) => {
-            console.log("addAssignment called, payload is: ", assignment)
-
             const existingAssignmentIndex = state.assignments.findIndex(
                 (a: any) => a._id === assignment._id
             );
