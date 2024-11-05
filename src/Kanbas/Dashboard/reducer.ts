@@ -11,6 +11,14 @@ const enrollmentsSlice = createSlice({
     reducers: {
         addEnrollment: (state, { payload: enrollment }) => {
             console.log("Add enroll payload: ", enrollment)
+
+            const newEnrollment: any = {
+                _id: 'E' + new Date().getTime().toString(),
+                user: enrollment.user,
+                course: enrollment.course
+            }
+
+            state.enrollments = [...state.enrollments, newEnrollment] as any;
         },
 
         deleteEnrollment: (state, { payload: enrollmentId }) => {

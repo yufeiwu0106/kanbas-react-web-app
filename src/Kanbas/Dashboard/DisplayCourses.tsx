@@ -32,8 +32,12 @@ export default function EnrolledCourses({
   return (
     <div>
       <h2 id="wd-dashboard-published">
-        {showAllCourses ? "All Published Courses" : "Enrolled Courses"} (
-        {displayedCourses.length})
+        {isFaculty
+          ? "All Published Courses"
+          : showAllCourses
+          ? "All Published Courses"
+          : "Enrolled Courses"}{" "}
+        ({displayedCourses.length})
       </h2>
       <hr />
       <div id="wd-dashboard-courses" className="row">
@@ -42,11 +46,13 @@ export default function EnrolledCourses({
             const enrolledCourse = enrolledCourses.find(
               (enrolledCourse) => enrolledCourse._id === course._id
             );
-            const enrollmentObj = enrolledCourse ? enrollments.find(
-              (enrollment) =>
-                enrollment.user === currentUser._id &&
-                enrollment.course === enrolledCourse._id
-            ) : null;
+            const enrollmentObj = enrolledCourse
+              ? enrollments.find(
+                  (enrollment) =>
+                    enrollment.user === currentUser._id &&
+                    enrollment.course === enrolledCourse._id
+                )
+              : null;
 
             return (
               <div
@@ -83,7 +89,7 @@ export default function EnrolledCourses({
                       Go{" "}
                     </button>
 
-                    {enrollmentObj && (
+                    {!isFaculty && enrollmentObj && (
                       <button
                         className="btn btn-danger float-end"
                         onClick={() => {
@@ -94,7 +100,7 @@ export default function EnrolledCourses({
                       </button>
                     )}
 
-                    {!enrollmentObj && (
+                    {!isFaculty && !enrollmentObj && (
                       <button
                         className="btn btn-success float-end"
                         onClick={() => {
