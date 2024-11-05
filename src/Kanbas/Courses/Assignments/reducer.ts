@@ -38,8 +38,6 @@ const assignmentsSlice = createSlice({
         },
 
         deleteAssignment: (state, { payload: assignmentId }) => {
-            console.log("reducer delete assignmentId: ", assignmentId)
-
             state.assignments = state.assignments.filter(
                 (a: any) => a._id != assignmentId
             )

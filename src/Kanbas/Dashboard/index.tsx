@@ -20,7 +20,11 @@ export default function Dashboard({
   updateCourse: () => void;
 }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = db;
+  const { enrollments } = useSelector(
+    (state: { enrollmentsReducer: { enrollments: any[] } }) =>
+      state.enrollmentsReducer
+  );
+
   const isFaculty = currentUser.role == "FACULTY";
   const isStudent = currentUser.role == "STUDENT";
 
