@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Session from "./Account/Session";
 import ProtectedRoute from "./Account/ProtectedRoute";
 import * as userClient from "./Account/client";
+import * as courseClient from "./Courses/client";
 import { useSelector } from "react-redux";
 
 export default function Kanbas() {
@@ -42,10 +43,13 @@ export default function Kanbas() {
 
     setCourses([...courses, newCourse]);
   };
-  const deleteCourse = (courseId: any) => {
+  const deleteCourse = async (courseId: any) => {
+    const status = await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
-  const updateCourse = () => {
+  const updateCourse = async () => {
+    await courseClient.updateCourse(course);
+    
     setCourses(
       courses.map((c) => {
         if (c._id === course._id) {
