@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import * as db from "../Database";
 import { useState } from "react";
 import DisplayCourses from "./DisplayCourses";
 
@@ -20,23 +19,25 @@ export default function Dashboard({
   updateCourse: () => void;
 }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { enrollments } = useSelector(
-    (state: { enrollmentsReducer: { enrollments: any[] } }) =>
-      state.enrollmentsReducer
-  );
+  // const { enrollments } = useSelector(
+  //   (state: { enrollmentsReducer: { enrollments: any[] } }) =>
+  //     state.enrollmentsReducer
+  // );
 
   const isFaculty = currentUser.role == "FACULTY";
   const isStudent = currentUser.role == "STUDENT";
 
-  const enrolledCourses = isFaculty
-    ? courses
-    : courses.filter((course) =>
-        enrollments.some(
-          (enrollment) =>
-            enrollment.user === currentUser._id &&
-            enrollment.course === course._id
-        )
-      );
+  // const enrolledCourses = isFaculty
+  //   ? courses
+  //   : courses.filter((course) =>
+  //       enrollments.some(
+  //         (enrollment) =>
+  //           enrollment.user === currentUser._id &&
+  //           enrollment.course === course._id
+  //       )
+  //     );
+
+  const enrolledCourses = courses;
 
   const [showAllCourses, setShowAllCourses] = useState(false);
 

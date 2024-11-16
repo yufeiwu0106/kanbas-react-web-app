@@ -4,13 +4,14 @@ import Dashboard from "./Dashboard";
 import KanbasNavigation from "./Navigation";
 import Courses from "./Courses";
 import "./styles.css";
-import * as db from "./Database";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Session from "./Account/Session";
 import ProtectedRoute from "./Account/ProtectedRoute";
+import * as userClient from "./Account/client";
+import { useSelector } from "react-redux";
 
 export default function Kanbas() {
-  const [courses, setCourses] = useState<any[]>(db.courses);
+  const [courses, setCourses] = useState<any[]>([]);
   const [course, setCourse] = useState<any>({
     _id: "0",
     name: "New Course",
@@ -19,15 +20,27 @@ export default function Kanbas() {
     endDate: "2023-12-15",
     description: "New Description",
   });
-  const addNewCourse = () => {
-    setCourses([
-      ...courses,
-      {
-        ...course,
-        _id: new Date().getTime().toString(),
-        image: "/images/reactjs.jpg",
-      },
-    ]);
+
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const fetchCourses = async () => {
+    let courses = [];
+    try {
+      // only retrieve courses if user is signed in
+      courses = await userClient.findMyCourses();
+    } catch (error) {
+      console.error(error);
+    }
+    setCourses(courses);
+  };
+
+  useEffect(() => {
+    fetchCourses();
+  }, [currentUser]);
+
+  const addNewCourse = async () => {
+    const newCourse = await userClient.createCourse(course);
+
+    setCourses([...courses, newCourse]);
   };
   const deleteCourse = (courseId: any) => {
     setCourses(courses.filter((course) => course._id !== courseId));
