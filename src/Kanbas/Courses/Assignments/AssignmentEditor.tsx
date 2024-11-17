@@ -7,11 +7,14 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addOrUpdateAssignment } from "./reducer";
 import { useState } from "react";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
 
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+
   const assignment = assignments.find((a: any) => a._id === aid);
 
   const navigate = useNavigate();
@@ -20,8 +23,22 @@ export default function AssignmentEditor() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser.role == "FACULTY";
 
+  const addOrUpdateAssignmentToBackend = async (aid: string, assignment: any) => {
+    const existingAssignmentIndex = assignments.findIndex(
+      (a: any) => a._id === aid
+    );
+
+    if (existingAssignmentIndex !== -1) {
+      await assignmentsClient.updateAssignment(aid, assignment);
+    } else {
+      await coursesClient.createAssignmentForCourse(assignment.cid, assignment);
+    }
+  }
+
   // asignment title state
-  const [assignmentName, setAssignmentName] = useState(assignment?.title || 'Untitled');
+  const [assignmentName, setAssignmentName] = useState(
+    assignment?.title || "Untitled"
+  );
 
   // description
   const DEFAULT_DESCRIPTION = `The assignment is available online.
@@ -274,20 +291,24 @@ The Kanbas application should include a link to navigate back to the landing pag
           </button>
           <button
             className="btn btn-danger"
-            onClick={() => {
-              dispatch(
-                addOrUpdateAssignment({
-                  _id: aid,
-                  title: assignmentName,
-                  course: cid,
-                  description: description,
-                  availableDate: availableDate,
-                  dueDate: dueDate,
-                  untilDate: untilDate,
-                  point: point,
-                })
+            onClick={async () => {
+              const newAssignment = {
+                title: assignmentName,
+                course: cid,
+                description: description,
+                availableDate: availableDate,
+                dueDate: dueDate,
+                untilDate: untilDate,
+                point: point,
+              };
+
+              dispatch(addOrUpdateAssignment({...newAssignment, _id: aid}));
+              setAssignmentName(assignmentName);
+              await addOrUpdateAssignmentToBackend(
+                aid as string,
+                newAssignment,
               );
-              setAssignmentName(assignmentName)
+
               navigate(`/Kanbas/Courses/${cid}/Assignments`);
             }}
           >

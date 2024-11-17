@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { assignments } from "../../Database";
+import * as assignmentsClient from "./client";
+import * as coursesClient from "../client";
 
 const initialState = {
     assignments: assignments,
@@ -9,31 +11,31 @@ const assignmentsSlice = createSlice({
     name: "assignments",
     initialState,
     reducers: {
+        setAssignments: (state, action) => {
+            state.assignments = action.payload;
+        },
+
         addOrUpdateAssignment: (state, { payload: assignment }) => {
             const existingAssignmentIndex = state.assignments.findIndex(
                 (a: any) => a._id === assignment._id
             );
 
-            if ( existingAssignmentIndex !== -1) {
+            if (existingAssignmentIndex !== -1) {
                 state.assignments[existingAssignmentIndex] = {
                     ...state.assignments[existingAssignmentIndex],
                     ...assignment,
                 };
+
+                assignmentsClient.updateAssignment(assignment._id, assignment);
             } else {
                 // add a new assignment if no existing assignement is found
+                const { _id, ...newAssignment } = assignment
 
-                const newAssignment: any = {
-                    _id: 'A' + new Date().getTime().toString(),
-                    title: assignment.title,
-                    description: assignment.description,
-                    course: assignment.course,
-                    availableDate: assignment.availableDate,
-                    dueDate: assignment.dueDate,
-                    untilDate: assignment.untilDate,
-                    point: assignment.point
-                }
+                const newAssignmentWithID = coursesClient.createAssignmentForCourse(
+                    assignment.course, newAssignment
+                );
 
-                state.assignments = [...state.assignments, newAssignment] as any;
+                state.assignments = [...state.assignments, newAssignmentWithID] as any;
             }
         },
 
@@ -47,5 +49,5 @@ const assignmentsSlice = createSlice({
     }
 });
 
-export const { addOrUpdateAssignment, deleteAssignment } = assignmentsSlice.actions;
+export const { setAssignments, addOrUpdateAssignment, deleteAssignment } = assignmentsSlice.actions;
 export default assignmentsSlice.reducer;
