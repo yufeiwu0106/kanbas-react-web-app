@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DisplayCourses from "./DisplayCourses";
+import * as courseClient from "../Courses/client";
 
 export default function Dashboard({
   courses,
@@ -24,20 +25,19 @@ export default function Dashboard({
   //     state.enrollmentsReducer
   // );
 
+  const [allCourses, setAllCourses] = useState<any[]>([]);
+
+  const fetchAllCourses = async () => {
+    const allCourses = await courseClient.fetchAllCourses();
+    setAllCourses(allCourses);
+  }
+
+  useEffect(() => {
+    fetchAllCourses()
+  });
+
   const isFaculty = currentUser.role == "FACULTY";
   const isStudent = currentUser.role == "STUDENT";
-
-  // const enrolledCourses = isFaculty
-  //   ? courses
-  //   : courses.filter((course) =>
-  //       enrollments.some(
-  //         (enrollment) =>
-  //           enrollment.user === currentUser._id &&
-  //           enrollment.course === course._id
-  //       )
-  //     );
-
-  const enrolledCourses = courses;
 
   const [showAllCourses, setShowAllCourses] = useState(false);
 
@@ -88,10 +88,12 @@ export default function Dashboard({
           <button
             className="btn btn-primary float-end"
             id="wd-add-new-course-click"
-            onClick={() =>
+            onClick={async () =>
               showAllCourses
                 ? setShowAllCourses(false)
                 : setShowAllCourses(true)
+
+              
             }
           >
             Enrollments
@@ -100,8 +102,8 @@ export default function Dashboard({
       )}
 
       <DisplayCourses
-        enrolledCourses={enrolledCourses}
-        allCourses={courses}
+        enrolledCourses={courses}
+        allCourses={allCourses}
         showAllCourses={showAllCourses}
         isFaculty={isFaculty}
         deleteCourse={deleteCourse}

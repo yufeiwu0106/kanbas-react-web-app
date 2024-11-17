@@ -3,6 +3,7 @@ import GreenCheck from "./GreenCheck";
 import { FaTrash } from "react-icons/fa";
 import { deleteAssignment } from "./reducer";
 import { useDispatch, useSelector } from "react-redux";
+import * as assignmentsClient from "./client";
 
 export default function GreenCheckPlus({
   assignmentId,
@@ -13,8 +14,10 @@ export default function GreenCheckPlus({
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const isFaculty = currentUser.role == "FACULTY";
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
     dispatch(deleteAssignment(assignmentId)); // Dispatch the delete action
+
+    await assignmentsClient.deleteAssignment(assignmentId);
   };
 
   return (

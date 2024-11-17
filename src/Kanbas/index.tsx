@@ -23,6 +23,7 @@ export default function Kanbas() {
   });
 
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const fetchCourses = async () => {
     let courses = [];
     try {
@@ -36,7 +37,7 @@ export default function Kanbas() {
 
   useEffect(() => {
     fetchCourses();
-  }, [currentUser]);
+  }, [currentUser, enrollments]);
 
   const addNewCourse = async () => {
     const newCourse = await userClient.createCourse(course);

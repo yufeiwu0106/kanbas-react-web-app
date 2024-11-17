@@ -10,8 +10,6 @@ const enrollmentsSlice = createSlice({
     initialState,
     reducers: {
         addEnrollment: (state, { payload: enrollment }) => {
-            console.log("Add enroll payload: ", enrollment)
-
             const newEnrollment: any = {
                 _id: 'E' + new Date().getTime().toString(),
                 user: enrollment.user,
@@ -22,8 +20,6 @@ const enrollmentsSlice = createSlice({
         },
 
         deleteEnrollment: (state, { payload: enrollmentId }) => {
-            console.log("Delete enroll payload: ", enrollmentId)
-
             state.enrollments = state.enrollments.filter(
                 (e: any) => e._id != enrollmentId
             )

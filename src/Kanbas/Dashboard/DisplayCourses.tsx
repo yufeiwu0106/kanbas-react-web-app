@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { addEnrollment, deleteEnrollment } from "./reducer";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import * as courseClient from "../Courses/client";
+import * as enrollmentsClient from "./client";
 
 export default function EnrolledCourses({
   enrolledCourses,
@@ -39,6 +41,7 @@ export default function EnrolledCourses({
           : "Enrolled Courses"}{" "}
         ({displayedCourses.length})
       </h2>
+
       <hr />
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
@@ -92,7 +95,9 @@ export default function EnrolledCourses({
                     {!isFaculty && enrollmentObj && (
                       <button
                         className="btn btn-danger float-end"
-                        onClick={() => {
+                        onClick={async () => {
+                          await enrollmentsClient.unenrollCourse(enrollmentObj._id);
+
                           dispatch(deleteEnrollment(enrollmentObj._id));
                         }}
                       >
@@ -103,7 +108,10 @@ export default function EnrolledCourses({
                     {!isFaculty && !enrollmentObj && (
                       <button
                         className="btn btn-success float-end"
-                        onClick={() => {
+                        onClick={async () => {
+                          // send API to enroll course
+                          await courseClient.enrollCourse(currentUser._id, course._id)
+                          
                           dispatch(
                             addEnrollment({
                               user: currentUser._id,
