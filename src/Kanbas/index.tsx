@@ -9,9 +9,13 @@ import Session from "./Account/Session";
 import ProtectedRoute from "./Account/ProtectedRoute";
 import * as userClient from "./Account/client";
 import * as courseClient from "./Courses/client";
-import { useSelector } from "react-redux";
+import * as dashboardClient from "./Dashboard/client";
+import { useSelector, useDispatch } from "react-redux";
+import { setEnrollments } from "./Dashboard/reducer";
 
 export default function Kanbas() {
+  const dispatch = useDispatch();
+
   const [courses, setCourses] = useState<any[]>([]);
   const [course, setCourse] = useState<any>({
     _id: "0",
@@ -38,6 +42,16 @@ export default function Kanbas() {
   useEffect(() => {
     fetchCourses();
   }, [currentUser, enrollments]);
+
+
+  const fetchAllEnrollments = async () => {
+    const enrollments = await dashboardClient.fetchAllEnrollments();
+    dispatch(setEnrollments(enrollments));
+  }
+
+  useEffect(() => {
+    fetchAllEnrollments();
+  }, []); // empty dependency array means it only runs once on mount
 
   const addNewCourse = async () => {
     const newCourse = await userClient.createCourse(course);

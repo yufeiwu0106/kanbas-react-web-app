@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { assignments } from "../../Database";
 import * as assignmentsClient from "./client";
 import * as coursesClient from "../client";
 
 const initialState = {
-    assignments: assignments,
+    assignments: [] as any[],
 };
 
 const assignmentsSlice = createSlice({

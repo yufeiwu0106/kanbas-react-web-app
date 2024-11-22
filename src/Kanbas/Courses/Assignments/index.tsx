@@ -9,7 +9,6 @@ import "./index.css";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import AssignmentController from "./AssignmentController";
-import * as assignmentsClient from "./client";
 import * as coursesClient from "../client";
 import React, { useEffect } from "react";
 import { setAssignments } from "./reducer";

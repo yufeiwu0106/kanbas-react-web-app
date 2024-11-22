@@ -20,10 +20,6 @@ export default function Dashboard({
   updateCourse: () => void;
 }) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  // const { enrollments } = useSelector(
-  //   (state: { enrollmentsReducer: { enrollments: any[] } }) =>
-  //     state.enrollmentsReducer
-  // );
 
   const [allCourses, setAllCourses] = useState<any[]>([]);
 
@@ -92,8 +88,6 @@ export default function Dashboard({
               showAllCourses
                 ? setShowAllCourses(false)
                 : setShowAllCourses(true)
-
-              
             }
           >
             Enrollments

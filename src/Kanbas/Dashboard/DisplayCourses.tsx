@@ -27,6 +27,7 @@ export default function EnrolledCourses({
       state.enrollmentsReducer
   );
 
+  // if faculty and showAllCourses
   const displayedCourses = showAllCourses ? allCourses : enrolledCourses;
 
   const dispatch = useDispatch();
@@ -98,6 +99,8 @@ export default function EnrolledCourses({
                         onClick={async () => {
                           await enrollmentsClient.unenrollCourse(enrollmentObj._id);
 
+                          console.log("Unenrolled id: ", enrollmentObj._id);
+
                           dispatch(deleteEnrollment(enrollmentObj._id));
                         }}
                       >
@@ -110,10 +113,11 @@ export default function EnrolledCourses({
                         className="btn btn-success float-end"
                         onClick={async () => {
                           // send API to enroll course
-                          await courseClient.enrollCourse(currentUser._id, course._id)
+                          const enrollment = await courseClient.enrollCourse(currentUser._id, course._id);
                           
                           dispatch(
                             addEnrollment({
+                              _id: enrollment._id,
                               user: currentUser._id,
                               course: course._id,
                             })
