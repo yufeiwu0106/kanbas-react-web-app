@@ -6,6 +6,7 @@ const initialState = {
     assignments: [] as any[],
 };
 
+
 const assignmentsSlice = createSlice({
     name: "assignments",
     initialState,
