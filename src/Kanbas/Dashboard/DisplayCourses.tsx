@@ -1,24 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import { addEnrollment, deleteEnrollment } from "./reducer";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import * as courseClient from "../Courses/client";
-import * as enrollmentsClient from "./client";
 
 export default function EnrolledCourses({
-  enrolledCourses,
-  allCourses,
-  showAllCourses,
+  courses,
   isFaculty,
   deleteCourse,
   setCourse,
+  enrolling,
+  updateEnrollment,
 }: {
-  enrolledCourses: any[];
-  allCourses: any[];
-  showAllCourses: boolean;
+  courses: any[];
   isFaculty: boolean;
   deleteCourse: (courseId: string) => void;
   setCourse: (courseId: string) => void;
+  enrolling: boolean;
+  updateEnrollment: (courseId: string, enrolled: boolean) => void;
 }) {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
@@ -27,29 +23,25 @@ export default function EnrolledCourses({
       state.enrollmentsReducer
   );
 
-  // if faculty and showAllCourses
-  const displayedCourses = showAllCourses ? allCourses : enrolledCourses;
-
-  const dispatch = useDispatch();
+  console.log("courses ", courses);
+  console.log("enrolling ", enrolling);
 
   return (
     <div>
       <h2 id="wd-dashboard-published">
         {isFaculty
           ? "All Published Courses"
-          : showAllCourses
+          : enrolling
           ? "All Published Courses"
           : "Enrolled Courses"}{" "}
-        ({displayedCourses.length})
+        ({courses.length})
       </h2>
 
       <hr />
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
-          {displayedCourses.map((course) => {
-            const enrolledCourse = enrolledCourses.find(
-              (enrolledCourse) => enrolledCourse._id === course._id
-            );
+          {courses.map((course) => {
+            const enrolledCourse = course;
             const enrollmentObj = enrolledCourse
               ? enrollments.find(
                   (enrollment) =>
@@ -66,7 +58,9 @@ export default function EnrolledCourses({
                 <div className="card rounded-3 overflow-hidden">
                   <img
                     src={
-                      course.image ? course.image : `/images/${course._id}.jpg`
+                      course.image
+                        ? course.image
+                        : `/images/${course.number}.jpg`
                     }
                     width="100%"
                     height={160}
@@ -93,38 +87,17 @@ export default function EnrolledCourses({
                       Go{" "}
                     </button>
 
-                    {!isFaculty && enrollmentObj && (
+                    {enrolling && (
                       <button
-                        className="btn btn-danger float-end"
-                        onClick={async () => {
-                          await enrollmentsClient.unenrollCourse(enrollmentObj._id);
-
-                          console.log("Unenrolled id: ", enrollmentObj._id);
-
-                          dispatch(deleteEnrollment(enrollmentObj._id));
+                        onClick={(event) => {
+                          event.preventDefault();
+                          updateEnrollment(course._id, !course.enrolled);
                         }}
+                        className={`btn ${
+                          course.enrolled ? "btn-danger" : "btn-success"
+                        } float-end`}
                       >
-                        Unenroll
-                      </button>
-                    )}
-
-                    {!isFaculty && !enrollmentObj && (
-                      <button
-                        className="btn btn-success float-end"
-                        onClick={async () => {
-                          // send API to enroll course
-                          const enrollment = await courseClient.enrollCourse(currentUser._id, course._id);
-                          
-                          dispatch(
-                            addEnrollment({
-                              _id: enrollment._id,
-                              user: currentUser._id,
-                              course: course._id,
-                            })
-                          );
-                        }}
-                      >
-                        Enroll
+                        {course.enrolled ? "Unenroll" : "Enroll"}
                       </button>
                     )}
 
