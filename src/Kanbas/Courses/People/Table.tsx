@@ -1,7 +1,10 @@
 import { FaUserCircle } from "react-icons/fa";
 import PeopleDetails from "./Details";
 import { Link } from "react-router-dom";
+
 export default function PeopleTable({ users = [] }: { users?: any[] }) {
+  console.log("PeopleTable", users);
+
   return (
     <div id="wd-people-table">
       <PeopleDetails />
