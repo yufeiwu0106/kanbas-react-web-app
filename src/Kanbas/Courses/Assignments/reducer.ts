@@ -15,29 +15,29 @@ const assignmentsSlice = createSlice({
             state.assignments = action.payload;
         },
 
-        addOrUpdateAssignment: (state, { payload: assignment }) => {
-            const existingAssignmentIndex = state.assignments.findIndex(
-                (a: any) => a._id === assignment._id
-            );
+        // addOrUpdateAssignment: (state, { payload: assignment }) => {
+        //     const existingAssignmentIndex = state.assignments.findIndex(
+        //         (a: any) => a._id === assignment._id
+        //     );
 
-            if (existingAssignmentIndex !== -1) {
-                state.assignments[existingAssignmentIndex] = {
-                    ...state.assignments[existingAssignmentIndex],
-                    ...assignment,
-                };
+        //     if (existingAssignmentIndex !== -1) {
+        //         state.assignments[existingAssignmentIndex] = {
+        //             ...state.assignments[existingAssignmentIndex],
+        //             ...assignment,
+        //         };
 
-                assignmentsClient.updateAssignment(assignment._id, assignment);
-            } else {
-                // add a new assignment if no existing assignement is found
-                const { _id, ...newAssignment } = assignment
+        //         assignmentsClient.updateAssignment(assignment._id, assignment);
+        //     } else {
+        //         // add a new assignment if no existing assignement is found
+        //         const { _id, ...newAssignment } = assignment
 
-                const newAssignmentWithID = coursesClient.createAssignmentForCourse(
-                    assignment.course, newAssignment
-                );
+        //         // const newAssignmentWithID = coursesClient.createAssignmentForCourse(
+        //         //     assignment.course, newAssignment
+        //         // );
 
-                state.assignments = [...state.assignments, newAssignmentWithID] as any;
-            }
-        },
+        //         state.assignments = [...state.assignments, newAssignmentWithID] as any;
+        //     }
+        // },
 
         deleteAssignment: (state, { payload: assignmentId }) => {
             state.assignments = state.assignments.filter(
@@ -49,5 +49,5 @@ const assignmentsSlice = createSlice({
     }
 });
 
-export const { setAssignments, addOrUpdateAssignment, deleteAssignment } = assignmentsSlice.actions;
+export const { setAssignments, deleteAssignment } = assignmentsSlice.actions;
 export default assignmentsSlice.reducer;

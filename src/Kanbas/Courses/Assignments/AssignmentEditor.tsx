@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { addOrUpdateAssignment } from "./reducer";
+import { setAssignments } from "./reducer";
 import { useState } from "react";
 import * as coursesClient from "../client";
 import * as assignmentsClient from "./client";
@@ -31,7 +31,7 @@ export default function AssignmentEditor() {
     if (existingAssignmentIndex !== -1) {
       await assignmentsClient.updateAssignment(aid, assignment);
     } else {
-      await coursesClient.createAssignmentForCourse(assignment.cid, assignment);
+      await coursesClient.createAssignmentForCourse(assignment.course, assignment);
     }
   }
 
@@ -302,12 +302,17 @@ The Kanbas application should include a link to navigate back to the landing pag
                 point: point,
               };
 
-              dispatch(addOrUpdateAssignment({...newAssignment, _id: aid}));
+              // dispatch(addOrUpdateAssignment({...newAssignment, _id: aid}));
               setAssignmentName(assignmentName);
               await addOrUpdateAssignmentToBackend(
                 aid as string,
                 newAssignment,
               );
+              
+              const assignments = await coursesClient.findAssignementsForCourse(
+                cid as string
+              );
+              dispatch(setAssignments(assignments));
 
               navigate(`/Kanbas/Courses/${cid}/Assignments`);
             }}
