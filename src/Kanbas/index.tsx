@@ -58,6 +58,8 @@ export default function Kanbas() {
         }
       })
     );
+
+    await fetchAllEnrollments();
   };
 
   const fetchCourses = async () => {

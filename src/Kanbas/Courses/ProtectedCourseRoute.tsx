@@ -3,6 +3,7 @@
 
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import * as enrollmentClient from "./People/client";
 
 export default function ProtectedRoute({
   course,
@@ -20,6 +21,8 @@ export default function ProtectedRoute({
       state.enrollmentsReducer
   );
 
+  // get all enrollments for the course by RPC
+  // const remoteEnrollments = await enrollmentClient.findEnrollmentsInCourse(course._id);
 
   const enrollmentObj = enrollments.find(
     (enrollment) => enrollment.user === currentUser._id &&
