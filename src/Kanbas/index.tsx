@@ -35,6 +35,7 @@ export default function Kanbas() {
     try {
       console.error("currentUser", currentUser);
       const courses = await userClient.findCoursesForUser(currentUser._id);
+      console.log("! courses", courses);
       setCourses(courses);
     } catch (error) {
       console.error(error);
@@ -47,6 +48,7 @@ export default function Kanbas() {
     } else {
       await userClient.unenrollFromCourse(currentUser._id, courseId);
     }
+    console.log("!! courses", courses);
     setCourses(
       courses.map((course) => {
         if (course._id === courseId) {
@@ -71,6 +73,7 @@ export default function Kanbas() {
           return course;
         }
       });
+      console.log("!!! courses", courses);
       setCourses(courses);
     } catch (error) {
       console.error(error);
@@ -96,18 +99,19 @@ export default function Kanbas() {
 
   const addNewCourse = async () => {
     const newCourse = await courseClient.createCourse(course);
-
+    console.log("!!!! newCourse", newCourse);
     setCourses([...courses, newCourse]);
   };
 
   // delete course from the courses list
   const deleteCourse = async (courseId: any) => {
     const status = await courseClient.deleteCourse(courseId);
+    console.log("!!!!! courses", courses);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
   const updateCourse = async () => {
     await courseClient.updateCourse(course);
-
+    console.log("!!!!!! courses", courses);
     setCourses(
       courses.map((c) => {
         if (c._id === course._id) {
